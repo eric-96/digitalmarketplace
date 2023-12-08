@@ -25,10 +25,14 @@ const VerifyEmailPage = ({ searchParams }: PageProps) => {
         ) : (
           <div className="flex h-full flex-col items-center justify-center space-y-1">
             <div className="relative mb-4 h-60 w-60 text-muted-foreground">
-              <Image src="/hippo-sent-email.png" alt="Hippo sent email" />
+              <Image
+                src="/hippo-email-sent.png"
+                fill
+                alt="Hippo email sent image"
+              />
             </div>
-            <h3 className="font-semibold text-2xl">
-              Check your email for a link to verify.
+            <h3 className="font-semibold text-center text-2xl">
+              Check your email for a link.
             </h3>
             {toEmail ? (
               <p className="text-muted-foreground text-center">

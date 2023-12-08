@@ -3,7 +3,6 @@ import { publicProcedure, router } from "./trpc";
 import { getPayloadClient } from "../get-payload";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
-import { Input } from "@/components/ui/input";
 
 export const authRouter = router({
     createPayloadUser: publicProcedure.input(AuthCredentialsValidator)

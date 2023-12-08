@@ -7,8 +7,15 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
+import {
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+} from "@radix-ui/react-dropdown-menu";
+import Link from "next/link";
+import { useAuth } from "@/hooks/use-auth";
 
 const UserAccountNav = ({ user }: { user: User }) => {
+  const { signOut } = useAuth();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild className="overflow-visible">
@@ -23,6 +30,16 @@ const UserAccountNav = ({ user }: { user: User }) => {
             <p className="font-medium text-sm text-black">{user.email}</p>
           </div>
         </div>
+
+        <DropdownMenuSeparator />
+
+        <DropdownMenuItem asChild>
+          <Link href="/sell">Seller Dashboard</Link>
+        </DropdownMenuItem>
+
+        <DropdownMenuItem onClick={signOut} className="cursor-pointer">
+          Log out
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
