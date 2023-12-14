@@ -1,4 +1,4 @@
-import { url } from "inspector";
+"use client";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type SwiperType from "swiper";

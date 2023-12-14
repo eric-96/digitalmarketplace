@@ -25,7 +25,7 @@ export const Orders: CollectionConfig = {
         create: ({req}) => req.user.role === 'admin',
     },
     fields: [ {
-        name: 'isPaid',
+        name: '_isPaid',
         type: 'checkbox',
         access: {
             read: ({req}) => 
