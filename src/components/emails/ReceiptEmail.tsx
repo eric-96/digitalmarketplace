@@ -36,7 +36,7 @@ export const ReceiptEmail = ({
   return (
     <Html>
       <Head />
-      <Preview>Your DigitalHippo Receipt</Preview>
+      <Preview>Your NeoMarket100 Receipt</Preview>
 
       <Body style={main}>
         <Container style={container}>
@@ -46,7 +46,7 @@ export const ReceiptEmail = ({
                 src={`${process.env.NEXT_PUBLIC_SERVER_URL}/hippo-email-sent.png`}
                 width="100"
                 height="100"
-                alt="DigitalHippo"
+                alt="NeoMarket100"
               />
             </Column>
 
@@ -158,7 +158,7 @@ export const ReceiptEmail = ({
             <Link href="#">Privacy Policy </Link>
           </Text>
           <Text style={footerCopyright}>
-            Copyright © 2023 DigitalHippo Inc. <br />{" "}
+            Copyright © 2023 Neo Market 100 Inc. <br />{" "}
             <Link href="#">All rights reserved</Link>
           </Text>
         </Container>

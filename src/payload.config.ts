@@ -25,7 +25,7 @@ export default buildConfig({
         user: 'users',
         bundler: webpackBundler(),
         meta: {
-            titleSuffix: "- DigitalHippo",
+            titleSuffix: "- NeoMarket100",
             favicon: '/favicon.ico',
             ogImage: '/thumbnail.jpg',
         },

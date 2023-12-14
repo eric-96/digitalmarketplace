@@ -33,8 +33,8 @@ export default function Home() {
             <span className="text-blue-600">digital assets</span>.
           </h1>
           <p className="mt-6 text-lg max-w-prose text-muted-foreground">
-            Welcome to DigitalAura. All assets on our platform is verified by
-            our team to ensure the highest quality standard.
+            Welcome to Neo Market 100. All assets are verified by our team to
+            ensure the highest quality standard.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 mt-6">
             <Link href="/products" className={buttonVariants()}>
