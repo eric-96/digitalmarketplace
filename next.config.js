@@ -3,7 +3,7 @@ const nextConfig = {
     images: {
         domains: [
             'localhost',
-            'digitalmarket-production.up.railway.app',
+            'digitalmarketplace-production.up.railway.app',
         ],
     },
 }
