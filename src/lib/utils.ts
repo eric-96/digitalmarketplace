@@ -51,7 +51,7 @@ export function constructMetadata({
       ],
     },
     icons,
-    metadataBase: new URL('https://neomarket100.up.railway.app'),
+    metadataBase: new URL('https://neomarket100-production.up.railway.app'),
     ...(noIndex && {
       robots: {
         index: false,
