@@ -15,6 +15,11 @@ import { parse } from 'url'
 const app = express()
 const PORT = Number(process.env.PORT) || 3000
 
+app.use((req, res, next) => {
+    res.setHeader('Content-Security-Policy', 'upgrade-insecure-requests');
+    next();
+  });
+
 const createContext = ({req, res}: trpcExpress.CreateExpressContextOptions) => ({
     req, res,
 })
