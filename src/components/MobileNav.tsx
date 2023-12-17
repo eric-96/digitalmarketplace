@@ -45,7 +45,9 @@ const MobileNav = () => {
 
   return (
     <>
-      <Cart />
+      <div className="ml-4 flow-root lg:ml-6">
+        <Cart />
+      </div>
       <div>
         <div className="relative z-40 lg:hidden">
           <div className="fixed inset-0 bg-black bg-opacity-25" />
