@@ -43,17 +43,18 @@ var server_1 = require("@trpc/server");
 var get_payload_1 = require("../get-payload");
 var stripe_1 = require("../lib/stripe");
 exports.paymentRouter = (0, trpc_1.router)({
-    createSession: trpc_1.privateProcedure.input(zod_1.z.object({ productsIds: zod_1.z.array(zod_1.z.string()) }))
+    createSession: trpc_1.privateProcedure
+        .input(zod_1.z.object({ productIds: zod_1.z.array(zod_1.z.string()) }))
         .mutation(function (_a) {
-        var input = _a.input, ctx = _a.ctx;
+        var ctx = _a.ctx, input = _a.input;
         return __awaiter(void 0, void 0, void 0, function () {
-            var user, productsIds, payload, products, filteredProducts, order, line_items, stripeSession, err_1;
+            var user, productIds, payload, products, filteredProducts, order, line_items, stripeSession, err_1;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
                         user = ctx.user;
-                        productsIds = input.productsIds;
-                        if (productsIds.length === 0) {
+                        productIds = input.productIds;
+                        if (productIds.length === 0) {
                             throw new server_1.TRPCError({ code: 'BAD_REQUEST' });
                         }
                         return [4 /*yield*/, (0, get_payload_1.getPayloadClient)()];
@@ -63,38 +64,34 @@ exports.paymentRouter = (0, trpc_1.router)({
                                 collection: 'products',
                                 where: {
                                     id: {
-                                        in: productsIds,
-                                    },
-                                    approvedForSale: {
-                                        equals: 'approved',
+                                        in: productIds,
                                     },
                                 },
                             })];
                     case 2:
                         products = (_b.sent()).docs;
-                        filteredProducts = products.filter(function (prod) { return Boolean(prod.priceId); });
+                        filteredProducts = products.filter(function (prod) {
+                            return Boolean(prod.priceId);
+                        });
                         return [4 /*yield*/, payload.create({
                                 collection: 'orders',
                                 data: {
                                     _isPaid: false,
+                                    products: filteredProducts.map(function (prod) { return prod.id; }),
                                     user: user.id,
-                                    products: filteredProducts.map(function (prod) { return prod.id; })
                                 },
                             })];
                     case 3:
                         order = _b.sent();
                         line_items = [];
-                        filteredProducts.forEach(function (prod) {
+                        filteredProducts.forEach(function (product) {
                             line_items.push({
-                                price: prod.priceId,
+                                price: product.priceId,
                                 quantity: 1,
-                                adjustable_quantity: {
-                                    enabled: false,
-                                },
                             });
                         });
                         line_items.push({
-                            price: 'price_1OO3rFI3xnwtNZ2RK1vvGX1b',
+                            price: 'price_1OQX61I3xnwtNZ2RjJ4ud4FD',
                             quantity: 1,
                             adjustable_quantity: {
                                 enabled: false,
@@ -119,14 +116,15 @@ exports.paymentRouter = (0, trpc_1.router)({
                         return [2 /*return*/, { url: stripeSession.url }];
                     case 6:
                         err_1 = _b.sent();
-                        console.log(err_1);
                         return [2 /*return*/, { url: null }];
                     case 7: return [2 /*return*/];
                 }
             });
         });
     }),
-    pollOrderStatus: trpc_1.privateProcedure.input(zod_1.z.object({ orderId: zod_1.z.string() })).query(function (_a) {
+    pollOrderStatus: trpc_1.privateProcedure
+        .input(zod_1.z.object({ orderId: zod_1.z.string() }))
+        .query(function (_a) {
         var input = _a.input;
         return __awaiter(void 0, void 0, void 0, function () {
             var orderId, payload, orders, order;
@@ -155,5 +153,5 @@ exports.paymentRouter = (0, trpc_1.router)({
                 }
             });
         });
-    })
+    }),
 });

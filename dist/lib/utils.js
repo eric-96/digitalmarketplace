@@ -44,7 +44,7 @@ function constructMetadata(_a) {
                     url: image,
                 },
             ],
-        }, icons: icons, metadataBase: new URL('https://neomarket100.up.railway.app') }, (noIndex && {
+        }, icons: icons, metadataBase: new URL('https://neomarket100-production.up.railway.app') }, (noIndex && {
         robots: {
             index: false,
             follow: false,

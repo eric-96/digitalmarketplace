@@ -74,6 +74,10 @@ var path_1 = __importDefault(require("path"));
 var url_1 = require("url");
 var app = (0, express_1.default)();
 var PORT = Number(process.env.PORT) || 3000;
+app.use(function (req, res, next) {
+    res.setHeader('Content-Security-Policy', 'upgrade-insecure-requests');
+    next();
+});
 var createContext = function (_a) {
     var req = _a.req, res = _a.res;
     return ({
