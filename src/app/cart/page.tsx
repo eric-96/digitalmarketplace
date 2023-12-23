@@ -18,7 +18,6 @@ const Page = () => {
   const { mutate: createCheckoutSession, isLoading } =
     trpc.payment.createSession.useMutation({
       onSuccess: ({ url }) => {
-        console.log("URL:", url);
         if (url) router.push(url);
       },
     });
@@ -194,9 +193,7 @@ const Page = () => {
             <div className="mt-6">
               <Button
                 disabled={items.length === 0 || isLoading}
-                onClick={() =>
-                  createCheckoutSession({ productsIds: productIds })
-                }
+                onClick={() => createCheckoutSession({ productIds })}
                 className="w-full"
                 size="lg"
               >
